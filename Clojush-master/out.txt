@@ -1,0 +1,329 @@
+;; Connected to nREPL server - nrepl://localhost:49396
+;; CIDER 0.17.0 (Andaluc a), nREPL 0.2.13
+;; Clojure 1.8.0, Java 1.8.0_172
+;;     Docs: (doc function-name)
+;;           (find-doc part-of-name)
+;;   Source: (source function-name)
+;;  Javadoc: (javadoc java-object-or-class)
+;;     Exit: <C-c C-q>
+;;  Results: Stored in vars *1, *2, *3, an exception in *e;
+;; ======================================================================
+;; If you’re new to CIDER it is highly recommended to go through its
+;; manual first. Type <M-x cider-view-manual> to view it.
+;; In case you’re seeing any warnings you should consult the manual’s
+;; "Troubleshooting" section.
+;;
+;; Here are few tips to get you started:
+;;
+;; * Press <C-h m> to see a list of the keybindings available (this
+;;   will work in every Emacs buffer)
+;; * Press <,> to quickly invoke some REPL command
+;; * Press <C-c C-z> to switch between the REPL and a Clojure file
+;; * Press <M-.> to jump to the source of something (e.g. a var, a
+;;   Java method)
+;; * Press <C-c C-d C-d> to view the documentation for something (e.g.
+;;   a var, a Java method)
+;; * Enable ‘eldoc-mode’ to display function & method signatures in the minibuffer.
+;; * Print CIDER’s refcard and keep it close to your keyboard.
+;;
+;; CIDER is super customizable - try <M-x customize-group cider> to
+;; get a feel for this. If you’re thirsty for knowledge you should try
+;; <M-x cider-drink-a-sip>.
+;;
+;; If you think you’ve encountered a bug (or have some suggestions for
+;; improvements) use <M-x cider-report-bug> to report it.
+;;
+;; Above all else - don’t panic! In case of an emergency - procure
+;; some (hard) cider and enjoy it responsibly!
+;;
+;; You can remove this message with the <M-x cider-repl-clear-help-banner> command.
+;; You can disable it from appearing on start by setting
+;; ‘cider-repl-display-help-banner’ to nil.
+;; ======================================================================
+clojush.core> (-main 'clojush.genesis.genesis)
+Command line args: clojush.genesis.genesis
+######################################
+Parameters set at command line or in problem file argmap; may or may not be default:
+alignment-deviation = 100
+alternation-rate = 0.1
+atom-generators = (code_atom genome_uniform_tag_mutation code_car print_newline integer_sub integer_inc boolean_stackdepth return_exec_pop zip_dup_items integer_tag_string_instruction vector_integer_eq boolean_pop genome_close_inc string_fromchar vector_string_shove zip_yankdup genome_new genome_gene_genome_instruction vector_float_yankdup exec_yankdup gtm_bounce2 vector_integer_shove integer_yankdup string_flush boolean_swap zip_empty exec_shove vector_boolean_yank code_eq exec_y boolean_yank integer_eq genome_silence string_butlast code_contains string_conjchar code_do*count vector_float_last genome_uniform_instruction_mutation genome_pop string_substring integer_mult vector_string_dup_times code_length vector_integer_dup boolean_or code_position boolean_empty zip_fromcode print_vector_string vector_boolean_swap exec_s_when_autoconstructing return_frominteger char_dup_items vector_float_pushall return_genome_pop genome_gene_close char_iswhitespace code_cdr exec_do*vector_integer vector_string_replacefirst string_first vector_boolean_first exec_do*while exec_string_iterate string_indexofchar vector_float_replace integer_fromstring code_list gtm_write_close code_swap char_frominteger genome_gene_randomize vector_integer_emptyvector vector_string_eq exec_dup_items vector_float_butlast boolean_dup_items genome_uniform_string_mutation exec_empty zip_end? exec_fromzipnode string_shove gtm_inc_delay vector_boolean_pushall zip_insert_left_fromcode gtm_blank1 exec_rot integer_tag_integer_instruction vector_string_concat vector_float_indexof genome_instruction_eq code_pop vector_string_subvec vector_integer_swap code_subst char_pop return_string_pop zip_yank exec_dup ...)
+csv-columns = [:generation :location :parent-uuids :genetic-operators :push-program-size :plush-genome-size :push-program :plush-genome :total-error :test-case-errors]
+edn-additional-keys = [:generation :location :push-program-size :plush-genome-size]
+edn-keys = [:uuid :parent-uuids :genetic-operators :program :genome :total-error :errors]
+epigenetic-markers = []
+error-function = #function[clojush.genesis.genesis/fn--15687]
+error-threshold = 0.01
+genetic-operator-probabilities = {:alternation 0.5, :uniform-mutation 0.5}
+json-log-program-strings = true
+log-fitnesses-for-all-cases = true
+max-generations = 2
+parent-selection = :epsilon-lexicase
+population-size = 5
+print-csv-logs = true
+print-edn-logs = true
+print-json-logs = true
+uniform-mutation-constant-tweak-rate = 0.8
+uniform-mutation-float-gaussian-standard-deviation = 0.1
+uniform-mutation-rate = 0.1
+use-single-thread = false
+######################################
+Registered instructions: #{code_atom genome_uniform_tag_mutation code_car print_newline integer_sub integer_inc boolean_stackdepth return_exec_pop zip_dup_items integer_tag_string_instruction vector_integer_eq autoconstructive_integer_rand boolean_pop genome_close_inc string_fromchar vector_string_shove zip_yankdup genome_new genome_gene_genome_instruction vector_float_yankdup exec_yankdup gtm_bounce2 vector_integer_shove integer_yankdup string_flush boolean_swap zip_empty exec_shove vector_boolean_yank code_eq exec_y boolean_yank integer_eq genome_silence string_butlast code_contains string_conjchar code_do*count vector_float_last genome_uniform_instruction_mutation genome_pop string_substring integer_mult vector_string_dup_times code_length vector_integer_dup boolean_or code_position boolean_empty zip_fromcode print_vector_string vector_boolean_swap exec_s_when_autoconstructing return_frominteger char_dup_items vector_float_pushall return_genome_pop genome_gene_close char_iswhitespace code_cdr exec_do*vector_integer integer_rand vector_string_replacefirst string_first vector_boolean_first exec_do*while exec_string_iterate string_indexofchar vector_float_replace integer_fromstring code_list gtm_write_close code_swap char_frominteger genome_gene_randomize vector_integer_emptyvector vector_string_eq exec_dup_items vector_float_butlast boolean_dup_items genome_uniform_string_mutation exec_empty zip_end? exec_fromzipnode string_shove gtm_inc_delay vector_boolean_pushall zip_insert_left_fromcode gtm_blank1 exec_rot integer_tag_integer_instruction vector_string_concat vector_float_indexof genome_instruction_eq code_pop vector_string_subvec vector_integer_swap code_subst char_pop return_string_pop ...}
+Starting PushGP run.
+Clojush version = version number unavailable
+Hash of last Git commit = unavailable
+GitHub link = unavailable
+age-combining-function = :average
+age-mediated-parent-selection = false
+alignment-deviation = 100
+alternation-rate = 0.1
+atom-generators = (code_atom genome_uniform_tag_mutation code_car print_newline integer_sub integer_inc boolean_stackdepth return_exec_pop zip_dup_items integer_tag_string_instruction vector_integer_eq boolean_pop genome_close_inc string_fromchar vector_string_shove zip_yankdup genome_new genome_gene_genome_instruction vector_float_yankdup exec_yankdup gtm_bounce2 vector_integer_shove integer_yankdup string_flush boolean_swap zip_empty exec_shove vector_boolean_yank code_eq exec_y boolean_yank integer_eq genome_silence string_butlast code_contains string_conjchar code_do*count vector_float_last genome_uniform_instruction_mutation genome_pop string_substring integer_mult vector_string_dup_times code_length vector_integer_dup boolean_or code_position boolean_empty zip_fromcode print_vector_string vector_boolean_swap exec_s_when_autoconstructing return_frominteger char_dup_items vector_float_pushall return_genome_pop genome_gene_close char_iswhitespace code_cdr exec_do*vector_integer vector_string_replacefirst string_first vector_boolean_first exec_do*while exec_string_iterate string_indexofchar vector_float_replace integer_fromstring code_list gtm_write_close code_swap char_frominteger genome_gene_randomize vector_integer_emptyvector vector_string_eq exec_dup_items vector_float_butlast boolean_dup_items genome_uniform_string_mutation exec_empty zip_end? exec_fromzipnode string_shove gtm_inc_delay vector_boolean_pushall zip_insert_left_fromcode gtm_blank1 exec_rot integer_tag_integer_instruction vector_string_concat vector_float_indexof genome_instruction_eq code_pop vector_string_subvec vector_integer_swap code_subst char_pop return_string_pop zip_yank exec_dup ...)
+autoconstructive = false
+autoconstructive-boolean-rand-enrichment = 0
+autoconstructive-clone-decay = :same
+autoconstructive-clone-probability = 0.0
+autoconstructive-code-rand-atom-enrichment = 0
+autoconstructive-decay = 0.0
+autoconstructive-diffmeans-children = 10
+autoconstructive-diversification-test = :gecco2016
+autoconstructive-environments = false
+autoconstructive-genome-instructions = :all
+autoconstructive-integer-rand-enrichment = 0
+autoconstructive-parent-decay = 0.0
+autoconstructive-si-children = 8
+autoconstructive-tag-types = [:integer :boolean :exec :float :char :string :code]
+close-increment-rate = 0.2
+close-parens-probabilities = [0.772 0.206 0.021 0.001]
+csv-columns = [:generation :location :parent-uuids :genetic-operators :push-program-size :plush-genome-size :push-program :plush-genome :total-error :test-case-errors]
+csv-log-filename = log.csv
+decimation-ratio = 1
+decimation-tournament-size = 2
+edn-additional-keys = [:generation :location :push-program-size :plush-genome-size]
+edn-keys = [:uuid :parent-uuids :genetic-operators :program :genome :total-error :errors]
+edn-log-filename = log.edn
+epigenetic-markers = []
+epsilon-lexicase-epsilon = nil
+epsilon-lexicase-probability = 1
+error-function = #function[clojush.genesis.genesis/fn--15687]
+error-threshold = 0.01
+evalpush-limit = 150
+evalpush-time-limit = 0
+exit-on-success = true
+final-report-simplifications = 1000
+genetic-operator-probabilities = {:alternation 0.5, :uniform-mutation 0.5}
+improvement-discount = 0.5
+individuals-for-novelty-archive-per-generation = 0
+json-log-filename = log.json
+json-log-program-strings = true
+label = nil
+lexicase-leakage = 0.1
+lexicase-slippage = 0
+log-fitnesses-for-all-cases = true
+maintain-ancestors = false
+max-error = 1000
+max-generations = 2
+max-genome-size-in-initial-program = 50
+max-point-evaluations = 1.0E101
+max-points = 200
+meta-error-categories = []
+normalization = :none
+novelty-distance-metric = :euclidean
+novelty-number-of-neighbors-k = 25
+parent-reversion-probability = 1.0
+parent-selection = :epsilon-lexicase
+pop-when-tagging = true
+population-size = 5
+print-ancestors-of-solution = false
+print-cosmos-data = false
+print-csv-logs = true
+print-edn-logs = true
+print-error-frequencies-by-case = false
+print-errors = true
+print-history = false
+print-homology-data = false
+print-json-logs = true
+print-selection-counts = false
+print-timings = false
+problem-specific-initial-report = #function[clojush.pushgp.report/default-problem-specific-initial-report]
+problem-specific-report = #function[clojush.pushgp.report/default-problem-specific-report]
+random-screen = false
+random-seed = 125 -64 70 118 -23 115 109 -122 37 -45 124 2 -127 -26 -3 -15
+random-threshold-lexicase-probability = 1
+random-toggle-lexicase-probability = 1
+randomly-truncated-lexicase-probability = 1
+record-host = nil
+replace-child-that-exceeds-size-limit-with = :random
+report-simplifications = 100
+return-simplified-on-failure = false
+reuse-errors = true
+self-mate-avoidance-limit = 0
+silent-instruction-probability = 0.2
+sort-meta-errors-for-lexicase = :random
+tag-enrichment = 0
+tag-enrichment-types = [:integer :boolean :exec :float :char :string :code]
+tag-limit = 10000
+top-level-pop-code = false
+top-level-push-code = false
+total-error-method = :sum
+tournament-size = 7
+track-instruction-maps = false
+uniform-addition-and-deletion-rate = 0.01
+uniform-addition-rate = 0.01
+uniform-close-mutation-rate = 0.1
+uniform-combination-and-deletion-rate = 0.01
+uniform-combination-rate = 0.01
+uniform-deletion-rate = 0.01
+uniform-mutation-constant-tweak-rate = 0.8
+uniform-mutation-float-gaussian-standard-deviation = 0.1
+uniform-mutation-int-gaussian-standard-deviation = 1
+uniform-mutation-rate = 0.1
+uniform-mutation-string-char-change-rate = 0.1
+uniform-mutation-tag-gaussian-standard-deviation = 100
+uniform-silence-mutation-rate = 0.1
+use-single-thread = false
+visualize = false
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Generating initial population...
+Processing generation: 0
+Computing errors... .....Done computing errors.
+Epsilons for epsilon lexicase: (0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 ...)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; -*- Report at generation 0
+--- Lexicase Program with Most Elite Cases Statistics ---
+Lexicase best genome: ({:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -12, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -26, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 6, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 0, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -2, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -16, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 4, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -14, :close 1} {:instruction zip_prev} {:instruction code_length} {:instruction integer_fromstring} {:instruction vector_boolean_conj} {:instruction vector_boolean_first} {:instruction genome_gene_genome_instruction} {:instruction print_code} {:instruction vector_boolean_emptyvector} {:instruction exec_swap} {:instruction genome_gene_delete} {:instruction string_stackdepth} {:instruction code_fromzipnode} {:instruction exec_fromziplefts} {:instruction exec_s_when_autoconstructing} {:instruction boolean_or} {:instruction print_newline} {:instruction float_swap} {:instruction string_fromboolean} {:instruction zip_shove} {:instruction vector_boolean_first} {:instruction integer_sub} {:instruction integer_fromchar} {:instruction code_yankdup} {:instruction vector_string_subvec} {:instruction vector_boolean_subvec} {:instruction vector_float_rot} {:instruction vector_integer_pop} {:instruction exec_do*vector_boolean} {:instruction genome_close_inc} {:instruction integer_lt} {:instruction char_frominteger} {:instruction string_replacechar} {:instruction zip_yankdup} {:instruction string_reverse} {:instruction float_gt} {:instruction gtm_bounce2} {:instruction code_nthcdr} {:instruction vector_integer_occurrencesof} {:instruction gtm_inc_delay})
+Lexicase best program: ((float_fromdatatable -12) (float_fromdatatable -26) (float_fromdatatable 6) (float_fromdatatable 0) (float_fromdatatable -2) (float_fromdatatable -16) (float_fromdatatable 4) (float_fromdatatable -14) zip_prev code_length integer_fromstring vector_boolean_conj vector_boolean_first genome_gene_genome_instruction print_code vector_boolean_emptyvector exec_swap (genome_gene_delete string_stackdepth code_fromzipnode exec_fromziplefts exec_s_when_autoconstructing (boolean_or print_newline float_swap string_fromboolean zip_shove vector_boolean_first integer_sub integer_fromchar code_yankdup vector_string_subvec vector_boolean_subvec vector_float_rot vector_integer_pop exec_do*vector_boolean (genome_close_inc integer_lt char_frominteger string_replacechar zip_yankdup string_reverse float_gt gtm_bounce2 code_nthcdr vector_integer_occurrencesof gtm_inc_delay)) () ()) ())
+....................................................................................................Lexicase best partial simplification: ()
+Lexicase best errors: [-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...]
+Lexicase best number of elite cases: 746
+Lexicase best total error: -0.0
+Lexicase best mean error: -0.0
+Lexicase best size: 70
+Percent parens: 0.214
+--- Lexicase Program with Most Zero Cases Statistics ---
+Zero cases best genome: ({:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -12, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -26, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 6, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 0, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -2, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -16, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 4, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -14, :close 1} {:instruction zip_prev} {:instruction code_length} {:instruction integer_fromstring} {:instruction vector_boolean_conj} {:instruction vector_boolean_first} {:instruction genome_gene_genome_instruction} {:instruction print_code} {:instruction vector_boolean_emptyvector} {:instruction exec_swap} {:instruction genome_gene_delete} {:instruction string_stackdepth} {:instruction code_fromzipnode} {:instruction exec_fromziplefts} {:instruction exec_s_when_autoconstructing} {:instruction boolean_or} {:instruction print_newline} {:instruction float_swap} {:instruction string_fromboolean} {:instruction zip_shove} {:instruction vector_boolean_first} {:instruction integer_sub} {:instruction integer_fromchar} {:instruction code_yankdup} {:instruction vector_string_subvec} {:instruction vector_boolean_subvec} {:instruction vector_float_rot} {:instruction vector_integer_pop} {:instruction exec_do*vector_boolean} {:instruction genome_close_inc} {:instruction integer_lt} {:instruction char_frominteger} {:instruction string_replacechar} {:instruction zip_yankdup} {:instruction string_reverse} {:instruction float_gt} {:instruction gtm_bounce2} {:instruction code_nthcdr} {:instruction vector_integer_occurrencesof} {:instruction gtm_inc_delay})
+Zero cases best program: ((float_fromdatatable -12) (float_fromdatatable -26) (float_fromdatatable 6) (float_fromdatatable 0) (float_fromdatatable -2) (float_fromdatatable -16) (float_fromdatatable 4) (float_fromdatatable -14) zip_prev code_length integer_fromstring vector_boolean_conj vector_boolean_first genome_gene_genome_instruction print_code vector_boolean_emptyvector exec_swap (genome_gene_delete string_stackdepth code_fromzipnode exec_fromziplefts exec_s_when_autoconstructing (boolean_or print_newline float_swap string_fromboolean zip_shove vector_boolean_first integer_sub integer_fromchar code_yankdup vector_string_subvec vector_boolean_subvec vector_float_rot vector_integer_pop exec_do*vector_boolean (genome_close_inc integer_lt char_frominteger string_replacechar zip_yankdup string_reverse float_gt gtm_bounce2 code_nthcdr vector_integer_occurrencesof gtm_inc_delay)) () ()) ())
+....................................................................................................Zero cases best partial simplification: ()
+Zero cases best errors: [-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...]
+Zero cases best number of elite cases: 746
+Zero cases best number of zero cases: 746
+Zero cases best total error: -0.0
+Zero cases best mean error: -0.0
+Zero cases best size: 70
+Percent parens: 0.214
+--- Lexicase Population Statistics ---
+Count of elite individuals by case: (5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 ...)
+Population mean number of elite cases: 746.00
+Count of perfect (error zero) individuals by case: (5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 ...)
+Population mean number of perfect (error zero) cases: 746.00
+--- Best Program (based on total-error) Statistics ---
+Best genome: ({:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -24, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 6, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -26, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 10, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -12, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 10, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction -2, :close 1} {:instruction noop_open_paren} {:instruction float_fromdatatable} {:instruction 8, :close 1} {:instruction char_iswhitespace} {:instruction float_cos} {:instruction exec_fromziprights} {:instruction integer_mult} {:instruction exec_string_iterate} {:instruction code_yankdup})
+Best program: ((float_fromdatatable -24) (float_fromdatatable 6) (float_fromdatatable -26) (float_fromdatatable 10) (float_fromdatatable -12) (float_fromdatatable 10) (float_fromdatatable -2) (float_fromdatatable 8) char_iswhitespace float_cos exec_fromziprights integer_mult exec_string_iterate (code_yankdup))
+....................................................................................................Partial simplification: ()
+Errors: [-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...]
+Total: -0.0
+Mean: -0.0
+Genome size: 30
+Size: 32
+Percent parens: 0.313
+--- Population Statistics ---
+Average total errors in population: -0.0
+Median total errors in population: -0.0
+Error averages by case: (-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...)
+Error minima by case: (-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...)
+Average genome size in population (length): 35.8
+Average program size in population (points): 38.8
+Average percent parens in population: 0.239
+Minimum age in population: 0.0
+Maximum age in population: 0.0
+Average age in population: 0.0
+Median age in population: 0.0
+Minimum grain-size in population: 1.0
+Maximum grain-size in population: 1.0
+Average grain-size in population: 1.0
+Median grain-size in population: 1.0
+--- Population Diversity Statistics ---
+Min copy number of one Plush genome: 1
+Median copy number of one Plush genome: 1
+Max copy number of one Plush genome: 1
+Genome diversity (% unique Plush genomes):	 1.0
+Min copy number of one Push program: 1
+Median copy number of one Push program: 1
+Max copy number of one Push program: 1
+Syntactic diversity (% unique Push programs):	 1.0
+Total error diversity:				 0.2
+Error (vector) diversity:			 0.2
+--- Run Statistics ---
+Number of program evaluations used so far: 5
+Number of point (instruction) evaluations so far: 27475180
+--- Timings ---
+Current time: 1536454291030 milliseconds
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; -*- End of report for generation 0
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+SUCCESS at generation 0
+Successful program: ((float_fromdatatable -24) (float_fromdatatable 6) (float_fromdatatable -26) (float_fromdatatable 10) (float_fromdatatable -12) (float_fromdatatable 10) (float_fromdatatable -2) (float_fromdatatable 8) char_iswhitespace float_cos exec_fromziprights integer_mult exec_string_iterate (code_yankdup))
+Errors: [-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...]
+Total error: -0.0
+History: null
+Size: 32
+
+
+Auto-simplifying with starting size: 32
+step: 0
+program: ((float_fromdatatable -24) (float_fromdatatable 6) (float_fromdatatable -26) (float_fromdatatable 10) (float_fromdatatable -12) (float_fromdatatable 10) (float_fromdatatable -2) (float_fromdatatable 8) char_iswhitespace float_cos exec_fromziprights integer_mult exec_string_iterate (code_yankdup))
+errors: [-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...]
+total: -0.0
+size: 32
+....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+step: 500
+program: ()
+errors: (-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...)
+total: -0.0
+size: 1
+....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+step: 1000
+program: ()
+errors: (-0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 -0.0 ...)
+total: -0.0
+size: 1
+
+;;******************************
+;; Problem-Specific Report of Simplified Solution
+nil
+Exception updating the ns-cache #error {
+ :cause Task clojure.lang.Agent$Action@14ca5704 rejected from java.util.concurrent.ThreadPoolExecutor@7d8c4fd2[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 33]
+ :via
+ [{:type java.util.concurrent.RejectedExecutionException
+   :message Task clojure.lang.Agent$Action@14ca5704 rejected from java.util.concurrent.ThreadPoolExecutor@7d8c4fd2[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 33]
+   :at [java.util.concurrent.ThreadPoolExecutor$AbortPolicy rejectedExecution ThreadPoolExecutor.java 2063]}]
+ :trace
+ [[java.util.concurrent.ThreadPoolExecutor$AbortPolicy rejectedExecution ThreadPoolExecutor.java 2063]
+  [java.util.concurrent.ThreadPoolExecutor reject ThreadPoolExecutor.java 830]
+  [java.util.concurrent.ThreadPoolExecutor execute ThreadPoolExecutor.java 1379]
+  [clojure.lang.Agent$Action execute Agent.java 90]
+  [clojure.lang.Agent enqueue Agent.java 268]
+  [clojure.lang.Agent dispatchAction Agent.java
+ 255]
+  [clojure.lang.Agent dispatch Agent.java 241]
+  [clojure.core$send_via invokeStatic core.clj 2017]
+  [clojure.core$send_via doInvoke core.clj 2009]
+  [clojure.lang.RestFn applyTo RestFn.java 146]
+  [clojure.core$apply invokeStatic core.clj 652]
+  [clojure.core$send invokeStatic core.clj 2028]
+  [clojure.core$send doInvoke core.clj 2019]
+  [clojure.lang.RestFn invoke RestFn.java 490]
+  [cider.nrepl.middleware.track_state$make_transport$reify__15485 send track_state.clj 217]
+  [clojure.tools.nrepl.middleware.pr_values$pr_values$fn$reify__10860 send pr_values.clj 27]
+  [cider.nrepl.middleware.content_type$content_type_transport$reify__15824 send content_type.clj 123]
+  [clojure.tools.nrepl.middleware.interruptible_eval$interruptible_eval$fn__10939$fn__10942 invoke interruptible_eval.clj 223]
+  [clojure.tools.nrepl.middleware.interruptible_eval$run_next$fn__10934 invoke interruptible_eval.clj 190]
+  [clojure.lang.AFn run AFn.java 22]
+  [java.util.concurrent.ThreadPoolExecutor runWorker ThreadPoolExecutor.java
+ 1149]
+  [java.util.concurrent.ThreadPoolExecutor$Worker run ThreadPoolExecutor.java 624]
+  [java.lang.Thread run Thread.java 748]]}
+clojush.core> 
