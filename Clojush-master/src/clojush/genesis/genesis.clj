@@ -18,12 +18,14 @@
 	    [clojure.java.io :as io])
 )
 
+(set! *warn-on-reflection* true)
+
 (def trading-days-in-year 252)
 ;; (def start-date "20000101")
 ;; (def end-date "20091231")
 ;; (def data-table-uri "http://192.168.1.174:6502/v1/ivmero/api")
 (def transaction-fee 10.0)
-(def adj-close-column 2)
+(def adj-close-column 5)
 
 ;;
 ;; Data Table
@@ -33,55 +35,58 @@
   "Loads the data file into a data table"
   []
   (drop 1 
-        (with-open [in-file (io/reader "RandomData.csv")]
+        (with-open [in-file (io/reader "dataTable.csv")]
           (->>
            (csv/parse-csv in-file)
-           mappify
+           ;; mappify
            (cast-with #(Double/parseDouble %))
-           vectorize
+           ;; vectorize
            doall)
           )))
 
 (def datatable (load-datatable))
 
-(defn datatable-rows
+(defn get-datatable-rows
   "Returns the number of rows in global data table"
   []
   (count datatable))
 
-(defn datatable-columns
+(def datatable-rows (get-datatable-rows))
+
+(defn get-datatable-columns
   "Returns the number of columns in global data table"
   []
   (count (first datatable)))
 
+(def datatable-columns (get-datatable-columns))
+
+(defn get-number-of-trading-rows
+  []
+  ;; (let [data-range {:from 0}]
+  ;;   (assoc data-range :to (unchecked-dec datatable-rows)))
+  (unchecked-dec (unchecked-subtract datatable-rows trading-days-in-year))
+  )
+
+(def number-of-trading-rows (get-number-of-trading-rows))
+
 (defn get-cell-from-datatable
   "Return cell at location row / column from the global datatable"
   [row column]
-  (if (or (< row 0) (>= row (datatable-rows)) (< column 0))
-    0.0
-    (let [bounded-column (mod column (datatable-columns))] 
+  (try
+    (let [bounded-column (rem column datatable-columns)] 
       (nth 
        (nth datatable row) 
-       bounded-column))))
+       bounded-column))
+    (catch IndexOutOfBoundsException e
+      0.0)))
 
 (defn get-value-from-datatable
   "Return a cell's value at location row / column from the global datatable"
   [row column]
   (if (< column 0)
-    (let [col (- -1 column)]
-      (if (> row 0)
-        (- (get-cell-from-datatable row column) (get-cell-from-datatable (dec row) column))
-        0.0))  
-    (if (< row 0)
-      0.0
-      (get-cell-from-datatable row column)
-      )))
-
-(defn get-data-range
-  []
-  (let [data-range {:from 0}]
-    (assoc data-range :to (dec (datatable-rows))))
-  )
+    (let [col (unchecked-subtract -1 column)]
+      (- (get-cell-from-datatable row column) (get-cell-from-datatable (unchecked-dec row) column)))  
+    (get-cell-from-datatable row column)))
 
 (defn get-stock-price
   "Return the value of the Adjusted Close Stock Price column from the global datatable"
@@ -127,27 +132,39 @@
 
 (defn update-brokerage-account 
   [brokerage-account buy-sell row]
-  (let [stock-price (get-stock-price (inc row))
+  (let [stock-price (get-stock-price (unchecked-inc row))
         cash (:cash brokerage-account)
         fee (:transaction-fee brokerage-account)]
-    (case (true? buy-sell) 
-      true (let [quantity-to-purchase (int (/ (- cash fee) stock-price))
-                 total-cost (+ (* stock-price quantity-to-purchase) fee)]
-             (if (and (> quantity-to-purchase 0) (>= cash total-cost))
-               (->
-                (update brokerage-account :stock + quantity-to-purchase)
-                (update :cash - total-cost))
-               brokerage-account))
-    
-      false (let [stock (:stock brokerage-account)
-                  total-gain (- (* stock-price stock) fee)]
-              (if (and (> stock 0) (> total-gain 0.0))
-                (->
-                 (assoc brokerage-account :stock 0)
-                 (update :cash + total-gain))
-                brokerage-account)))))
+    (try (case (true? buy-sell) 
+           true (let [quantity-to-purchase (int (/ (unchecked-subtract cash fee) stock-price))
+                      total-cost (unchecked-add (unchecked-multiply stock-price quantity-to-purchase) fee)]
+                  (if (and (> quantity-to-purchase 0) (>= cash total-cost))
+                    (->
+                     (update brokerage-account :stock unchecked-add quantity-to-purchase)
+                     (update :cash unchecked-subtract total-cost))
+                    brokerage-account))
+           
+           false (let [stock (:stock brokerage-account)
+                       total-gain (unchecked-subtract (unchecked-multiply stock-price stock) fee)]
+                   (if (and (> stock 0) (> total-gain 0.0))
+                     (->
+                      (assoc brokerage-account :stock 0)
+                      (update :cash unchecked-add total-gain))
+                     brokerage-account)))
+         (catch ArithmeticException e
+           (do 
+             (println "buy-sell = " buy-sell)
+             (println "row = " row)
+             (println "stock-price = " stock-price)
+             (println "cash = " cash)
+             (println "fee = " fee)
+             (System/exit 0))))
+)
+)
 
 (defn get-brokerage-account-value [brokerage-account row]
+  "Calculates the current value by creating a copy of the account with all stocks sold.  
+   Does not keep or return the updated account."
   (:cash (update-brokerage-account brokerage-account false row)))
 
 ;; ;;
@@ -160,9 +177,7 @@
   (conj genome
         {:instruction 'noop_open_paren} 
         {:instruction 'float_fromdatatable} 
-;;        {:instruction (int (- (rand-int Integer/MAX_VALUE) (/ Integer/MAX_VALUE 2))) :close 1}
-        ;; {:instruction (int (- (rand-int 100) (/ 100 2))) :close 1}
-        {:instruction (int (- (* 2 (rand-int (datatable-columns))) (datatable-columns))) :close 1}
+        {:instruction (int (- (* 2 (rand-int datatable-columns)) datatable-columns)) :close 1}
         ))
 
 (defn random-data-load-plush-genome
@@ -193,8 +208,8 @@
         invalid-output 
         max-number-magnitude
 
-        (or (> row (+ input-start trading-days-in-year)) (>= row (dec (datatable-rows)))) 
-        (let [error (- (get-brokerage-account-value brokerage-account row))]
+        (or (> row (unchecked-add input-start trading-days-in-year)) (> row datatable-rows)) 
+        (let [error (unchecked-negate (get-brokerage-account-value brokerage-account row))]
           (if (zero? error)
             max-number-magnitude
             error))
@@ -225,29 +240,26 @@
 (def argmap
   {
    :error-function (fn [individual]
-                     (let [data-range (get-data-range)
-                           gen-indy (add-data-load-instructions individual)
-                           ]
+                     (let [gen-indy (add-data-load-instructions individual)]
                        (assoc gen-indy
                               :errors
                               (doall
-                               (for [input-start (range (:from data-range) (- (:to data-range) trading-days-in-year))]
-                                 (eval-test-case input-start gen-indy))))))
+                               (for [input-start (range 0 number-of-trading-rows)]
+                                 (eval-test-case input-start gen-indy))
+                               ;; (pmap #(eval-test-case % gen-indy) (range 0 number-of-trading-rows))
+                               ))))
 
    :error-threshold 0.01
 
    :atom-generators (concat (registered-nonrandom)                          ;; all registered instrs except random instructions
-                            ;; (repeatedly 100 #(rand-int Integer/MAX_VALUE))  ;; random integers 
-                            ;; (repeatedly 100 #(rand Float/MAX_VALUE))        ;; random floats
-                            
                             (list
                              (fn [] (lrand-int 100))                        ;; random integers
                              (fn [] (lrand)))                               ;; random floats
                             )       
 
-   :use-single-thread false
-   :population-size 5
-   :max-generations 2
+   :use-single-thread true
+   :population-size 10
+   :max-generations 3
    :epigenetic-markers []
    :parent-selection :epsilon-lexicase
    :genetic-operator-probabilities {:alternation 0.5
@@ -282,3 +294,73 @@
    ;; If true, JSON logs will include program strings for each individual.
    }
   )
+
+
+;; (defn t1
+;;   []
+;;   (println
+;;    (time 
+;;     (nth 
+;;      (nth 
+;;       datatable 50
+;;       ) 10
+;;      ))))
+
+;; (defn load-datatable-2
+;;   []
+;;   (to-array-2d (drop 1 
+;;                      (with-open [in-file (io/reader "RandomData.csv")]
+;;                        (->>
+;;                         (csv/parse-csv in-file)
+;;                         mappify
+;;                         (cast-with #(Double/parseDouble %))
+;;                         vectorize
+;;                         doall
+;;                         )
+;;                        ))))
+
+;; (def datatable-2 (load-datatable-2))
+;; (defn t2
+;;   []
+;;   (println
+;;    (time
+;;     (aget datatable-2 50 10))))
+
+;; (defn get-cell-from-datatable
+;;   "Return cell at location row / column from the global datatable"
+;;   [row column]
+;;   (if (or (< row 0) (>= row (datatable-rows)) (< column 0))
+;;     0.0
+;;     (let [bounded-column (mod column (datatable-columns))] 
+;;       (nth 
+;;        (nth datatable row) 
+;;        bounded-column))))
+
+;; (defn t1
+;;   [x]
+;;   (time
+;;    (if (< x 0)
+;;      true
+;;      false)))
+
+;; (defn t2
+;;   [x]
+;;   (time
+;;    (if (neg? x)
+;;      true
+;;      false)))
+
+   ;; :error-function (fn [individual]
+   ;;                   (let [data-range datatable-row-range
+   ;;                         gen-indy (add-data-load-instructions individual)
+   ;;                         ]
+   ;;                     (assoc gen-indy
+   ;;                            :errors
+   ;;                            (doall
+   ;;                             (for [input-start (range (:from data-range) (- (:to data-range) trading-days-in-year))]
+   ;;                               (eval-test-case input-start gen-indy))
+   ;;                            ))))
+
+                            ;; (repeatedly 100 #(rand-int Integer/MAX_VALUE))  ;; random integers 
+                            ;; (repeatedly 100 #(rand Float/MAX_VALUE))        ;; random floats
+                            
